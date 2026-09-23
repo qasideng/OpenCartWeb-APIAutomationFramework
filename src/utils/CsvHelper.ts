@@ -1,0 +1,14 @@
+
+import fs, { readFileSync } from "fs";
+import {parse} from 'csv-parse/sync';
+
+export class CsvHelper {
+
+    static readCsv(filePath: string): Record<string, string>[] {
+        return parse(fs.readFileSync(filePath, 'utf-8'), {
+            columns: true, //used to tell first row as header in csv
+            skip_empty_lines: true,
+            trim: true,
+        }) as Record<string, string>[];
+    }
+}
